@@ -39,27 +39,27 @@ Medical Disclaimer       — Always visible, professionally integrated
 
 Architecture
 ╔══════════════════════════════════════════════════════════════╗
-║                        USER LAYER                                            ║
-║                                                                              ║
-║              Browser (Desktop / Mobile / Tablet)                             ║
+║                        USER LAYER                            ║
+║                                                              ║
+║              Browser (Desktop / Mobile / Tablet)             ║
 ╚══════════════════════════════╤══════════════════════════════╝
                                │
                                ▼
 ╔══════════════════════════════════════════════════════════════╗
-║                      FRONTEND LAYER                                           ║
-║                    React + Vite (Vercel)                                      ║
-║                                                                               ║
-║   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐         ║
-║   │SymptomInput      │   │  ResultCard      │   │    RiskMeter     │         ║
-║   │  + Voice         │   │  + Prob Bar      │   │   + Animation    │         ║
-║   └──────────────┘   └──────────────┘   └──────────────┘         ║
-║                                                                               ║
-║   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐         ║
-║   │  Disclaimer      │   │  Emergency       │   │  Specialist      │         ║
-║   │   Banner         │   │    Alert         │   │    List          │         ║
-║   └──────────────┘   └──────────────┘   └──────────────┘         ║
-║                                                                               ║
-║                    App.jsx (Main Controller)                                  ║
+║                      FRONTEND LAYER                          ║
+║                    React + Vite (Vercel)                     ║
+║                                                              ║
+║   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐     ║
+║   │SymptomInput  │   │  ResultCard  │   │    RiskMeter │     ║
+║   │  + Voice     │   │  + Prob Bar  │   │   + Animation│     ║
+║   └──────────────┘   └──────────────┘   └──────────────┘     ║
+║                                                              ║
+║   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐     ║
+║   │  Disclaimer  │   │  Emergency   │   │  Specialist  │     ║
+║   │   Banner     │   │    Alert     │   │    List      │     ║
+║   └──────────────┘   └──────────────┘   └──────────────┘     ║
+║                                                              ║
+║                    App.jsx (Main Controller)                 ║
 ╚══════════════════════════════╤══════════════════════════════╝
                                │
                                │  HTTP POST /predict
@@ -67,17 +67,17 @@ Architecture
                                │  (Axios)
                                ▼
 ╔══════════════════════════════════════════════════════════════╗
-║                      BACKEND LAYER                                            ║
-║                   Flask + Python (Render)                                     ║
-║                                                                               ║
+║                      BACKEND LAYER                           ║
+║                   Flask + Python (Render)                     ║
+║                                                               ║
 ║   ┌─────────────────────────────────────────────────────┐      ║
-║   │                    app.py                                          │     ║
-║   │                                                                    │     ║
-║   │  POST /predict    → Validate → Call Gemini → JSON                  │     ║
-║   │  GET  /specialists → Return doctors list                           │     ║
-║   │  GET  /           → Health check                                   │     ║
-║   │                                                                    │     ║
-║   │  Middleware: Flask-CORS, python-dotenv                             │     ║
+║   │                    app.py                           │     ║
+║   │                                                     │     ║
+║   │  POST /predict    → Validate → Call Gemini → JSON   │     ║
+║   │  GET  /specialists → Return doctors list            │     ║
+║   │  GET  /           → Health check                    │     ║
+║   │                                                     │     ║
+║   │  Middleware: Flask-CORS, python-dotenv              │     ║
 ║   └─────────────────────────────────────────────────────┘     ║
 ╚══════════════════════════════╤══════════════════════════════╝
                                │
@@ -85,122 +85,122 @@ Architecture
                                │  (google-generativeai SDK)
                                ▼
 ╔══════════════════════════════════════════════════════════════╗
-║                        AI LAYER                                                   ║
-║                 Google Gemini 1.5 Flash API                                       ║
-║                      (Free Tier)                                                  ║
-║                                                                                   ║
-║   Input  → Patient symptoms in natural language                                   ║
-║                                                                                   ║
-║   Output → Structured JSON:                                                       ║
-║            • conditions[] with name, probability,                                 ║
-║              description, specialist                                              ║
-║            • urgency (Low/Medium/High/Emergency)                                  ║
-║            • urgency_reason                                                       ║ 
-║            • general_advice                                                       ║
-║            • seek_emergency (true/false)                                          ║
+║                        AI LAYER                              ║
+║                 Google Gemini 1.5 Flash API                  ║
+║                      (Free Tier)                             ║
+║                                                              ║
+║   Input  → Patient symptoms in natural language              ║
+║                                                              ║
+║   Output → Structured JSON:                                  ║
+║            • conditions[] with name, probability,            ║
+║              description, specialist                         ║
+║            • urgency (Low/Medium/High/Emergency)             ║
+║            • urgency_reason                                  ║ 
+║            • general_advice                                  ║
+║            • seek_emergency (true/false)                     ║
 ╚══════════════════════════════════════════════════════════════╝
 
 Flow Diagram
 
-                               ┌─────────┐
-                               │  USER      │
-                               └────┬────┘
-                                     │
+                           ┌─────────┐
+                           │  USER   │
+                           └────┬────┘
+                                 │
                     ┌────────────▼────────────┐
-                    │     Opens Health AI            │
-                    │     Web Application            │
+                    │     Opens Health AI     │
+                    │     Web Application     │
                     └────────────┬────────────┘
-                                     │
+                                 │
                     ┌────────────▼────────────┐
-                    │   Reads Disclaimer &           │
-                    │   Understands Purpose          │
+                    │   Reads Disclaimer &    │
+                    │   Understands Purpose   │
                     └────────────┬────────────┘
-                                     │
+                                │
                ┌────────────────▼──────────────────┐
-               │         Enters Symptoms                     │
-               │                                             │
-               │   Option A: Type in textarea                │                 │
-               │   Option B: 🎤 Voice input                 │
+               │         Enters Symptoms           │
+               │                                   │
+               │   Option A: Type in textare       │                 
+               │   Option B: 🎤 Voice input        │
                └─────────────────┬─────────────────┘
-                                      │
+                                 │
                     ┌────────────▼────────────┐
-                    │   Clicks "Analyze              │
-                    │    Symptoms" Button            │
+                    │   Clicks "Analyze       │
+                    │    Symptoms" Button     │
                     └────────────┬────────────┘
-                                      │
+                                 │
                     ┌────────────▼────────────┐
-                    │  Frontend Validates            │
-                    │  • Not empty                   │
-                    │  • Min 3 characters            │
-                    │  • Max 500 characters          │
+                    │  Frontend Validates     │
+                    │  • Not empty            │
+                    │  • Min 3 characters     │
+                    │  • Max 500 characters   │
                     └─────┬──────────┬────────┘
-                            │             │
-                       VALID│      INVALID│
-                            │            │
-                            │    ┌─────▼──────┐
-                            │    │ Show Error     │
-                            │    │  Message       │
-                            │    └────────────┘
-                            │
+                         │             │
+                     VALID│     INVALID│
+                          │           │
+                          │    ┌─────▼──────┐
+                          │    │ Show Error │
+                          │    │  Message   │
+                          │    └────────────┘
+                          │
            ┌────────────▼──────────  ────────┐
-           │   Axios POST to Flask Backend            │
-           │   { "symptoms": "user input" }           │
+           │   Axios POST to Flask Backend   │
+           │   { "symptoms": "user input" }  │
+           └──────────────┬──────────────────┘
+                          │
+           ┌──────────────▼──────────────────┐
+           │    Flask Backend Validates      │
+           │    Input Again (Security)       │
+           └──────────────┬──────────────────┘
+                          │
+           ┌──────────────▼──────────────────┐
+           │    Builds Prompt + System       │
+           │    Instructions for Gemini      │
+           └──────────────┬──────────────────┘
+                          │
+           ┌──────────────▼──────────────────┐
+           │    Sends to Gemini AI API       │
+           │    model: gemini-1.5-flash      │
+           └──────────────┬──────────────────┘
+                          │
+           ┌──────────────▼──────────────────┐
+           │    Gemini Analyzes Symptoms     │
+           │    Returns Structured JSON      │
            └──────────────┬──────────────────┘
                                │
            ┌──────────────▼──────────────────┐
-           │    Flask Backend Validates               │
-           │    Input Again (Security)                │
+           │    Flask Parses JSON            │
+           │    Returns to Frontend          │
            └──────────────┬──────────────────┘
-                               │
-           ┌──────────────▼──────────────────┐
-           │    Builds Prompt + System                │
-           │    Instructions for Gemini               │
-           └──────────────┬──────────────────┘
-                               │
-           ┌──────────────▼──────────────────┐
-           │    Sends to Gemini AI API                │
-           │    model: gemini-1.5-flash               │
-           └──────────────┬──────────────────┘
-                               │
-           ┌──────────────▼──────────────────┐
-           │    Gemini Analyzes Symptoms              │
-           │    Returns Structured JSON               │
-           └──────────────┬──────────────────┘
-                               │
-           ┌──────────────▼──────────────────┐
-           │    Flask Parses JSON                      │
-           │    Returns to Frontend                    │
-           └──────────────┬──────────────────┘
-                              │
+                          │
                 ┌─────────▼──────────┐
-                │  seek_emergency?        │
+                │  seek_emergency?   │
                 └──── ┬──────────┬───┘
-                         │               │
-                      YES│            NO │
-                         │               │
-          ┌──────────▼──┐  ┌────▼────────────────┐
-          │  🚨 SHOW        │  │  Show Normal Results     │
-          │  EMERGENCY      │  │                           │
-          │  ALERT +        │  │  🎯 Risk Meter            │
-          │  CALL 112       │  │  🔬 Conditions List       │
-          └─────────────┘   │  💡 General Advice       │
-                                │  👨‍⚕️ Find Specialist      │
-                                │  📄 Download PDF         │
+                     │           │
+                  YES│         NO │
+                    │             │
+          ┌──────────▼──┐        ┌────▼────────────────┐
+          │  🚨 SHOW    │       │  Show Normal Results │
+          │  EMERGENCY  │       │                       │
+          │  ALERT +    │       │  🎯 Risk Meter       │
+          │  CALL 112   │       │  🔬 Conditions List  │
+          └─────────────┘       │  💡 General Advice  │
+                                │  👨‍⚕️ Find Specialist │
+                                │  📄 Download PDF    │
                                 └──────────┬──────────┘
-                                               │
+                                          │
                                 ┌──────────▼───────────┐
-                                │  User Reads Results        │
-                                └──────┬───────────------┘
+                                │  User Reads Results  │
+                                └──────┬───────────----┘
                                           │
                       ┌──────────────▼──────────────────┐
-                      │         User Decision                     │
-                      │                                            │
-                      │  • Download PDF report                     │
-                      │  • View specialist list                    │
-                      │  • Call emergency services                 │
-                      │  • Check different symptoms                │
-                      │  • Book doctor appointment                 │
-                      └───────────────────────────────────┘
+                      │         User Decision           │
+                      │                                 │
+                      │  • Download PDF report          │
+                      │  • View specialist list         │
+                      │  • Call emergency services      │
+                      │  • Check different symptoms     │
+                      │  • Book doctor appointment      │
+                      └─────────────────────────────────┘
 
 Project Structure
 health-ai/
