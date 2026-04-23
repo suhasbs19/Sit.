@@ -13,7 +13,7 @@ The application also includes emergency alerts, voice symptom input, downloadabl
 Proposed Solution
 Develop an AI-powered symptom analysis platform that provides quick preliminary health guidance based on user symptoms. The system uses machine learning/NLP to detect possible illnesses, estimate risk level, and guide users toward the next best action such as home care, doctor consultation, or emergency help. This saves time, improves awareness, and supports faster healthcare decisions. 
 
-Tech Stack (optional)
+Tech Stack
 Frontend: React + Vite
 Backend: Flask
 AI Model: Google Gemini 1.5 Flash
